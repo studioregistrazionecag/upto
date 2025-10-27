@@ -1,0 +1,49 @@
+/* src/components/DashboardLayout.module.css */
+.container {
+  width: 100%;
+  max-width: 800px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border-color);
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.userRole {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+
+.userName {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.logoutButton {
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 10px 16px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.logoutButton:hover {
+  background-color: var(--border-color);
+}
+
+.mainContent {
+  width: 100%;
+}

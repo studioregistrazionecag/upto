@@ -1,0 +1,53 @@
+/* src/styles/global.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* NUOVA PALETTE ROSSO / ORO */
+  --background: #1A0000;
+  --surface: #1C1B22;
+  --primary-red-gradient: linear-gradient(90deg, #D32F2F 0%, #B71C1C 100%);
+  --gold-accent: #FFD700;
+  --text-primary: #F2F2F2;
+  --text-secondary: #A0A0A0;
+  --border-color: #424242;
+  --input-bg: #222128;
+  --border-radius: 12px;
+  --success: #34d399;
+  --error: #f87171;
+}
+
+@keyframes subtle-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(-45deg, #B71C1C, #6A0000, #1A0000, #000000);
+  background-size: 400% 400%;
+  animation: subtle-gradient 15s ease infinite;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 24px;
+}
+
+input, button, select {
+  font-family: 'Inter', sans-serif;
+}
