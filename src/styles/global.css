@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  /* NUOVA PALETTE ROSSO / ORO */
+  /* Palette Rosso / Oro */
   --background: #1A0000;
   --surface: #1C1B22;
   --primary-red-gradient: linear-gradient(90deg, #D32F2F 0%, #B71C1C 100%);
@@ -28,6 +28,11 @@
   padding: 0;
 }
 
+/* Correzione per layout a tutta altezza su mobile */
+html, body {
+  height: 100%;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   color: var(--text-primary);
@@ -42,9 +47,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
   width: 100%;
+  min-height: 100%;
   padding: 24px;
 }
 
