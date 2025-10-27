@@ -42,7 +42,6 @@
   flex: 1;
 }
 
-/* NUOVO STILE BOTTONE */
 .submitButton {
   background: #050505;
   color: var(--gold-accent);

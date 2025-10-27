@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import styles from './AuthPage.module.css';
-import logo from '../assets/logo.svg';
+import UptoLogo from '../assets/UptoLogo'; 
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true)
@@ -14,55 +14,33 @@ const AuthPage = () => {
   const [message, setMessage] = useState({ text: '', type: 'error' })
 
   const handleRegister = async (e) => {
-    e.preventDefault()
-    setLoading(true)
-    setMessage({ text: '', type: 'error' })
-
-    const { error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-      options: { data: { full_name: fullName, role: role } },
-    })
-
-    if (error) {
-      setMessage({ text: error.message, type: 'error' })
-    } else {
-      setMessage({ text: 'Registrazione completata! Ora puoi accedere.', type: 'success' })
-      setIsLogin(true)
-    }
-    setLoading(false)
-  }
+    e.preventDefault();
+    setLoading(true);
+    setMessage({ text: '', type: 'error' });
+    const { error } = await supabase.auth.signUp({ email, password, options: { data: { full_name: fullName, role } } });
+    if (error) { setMessage({ text: error.message, type: 'error' }); } 
+    else { setMessage({ text: 'Grande! Mo Accedi.', type: 'success' }); setIsLogin(true); }
+    setLoading(false);
+  };
 
   const handleLogin = async (e) => {
-    e.preventDefault()
-    setLoading(true)
-    setMessage({ text: '', type: 'error' })
-    const { error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    })
-    if (error) {
-      setMessage({ text: error.message, type: 'error' })
-    }
-    setLoading(false)
-  }
+    e.preventDefault();
+    setLoading(true);
+    setMessage({ text: '', type: 'error' });
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) { setMessage({ text: error.message, type: 'error' }); }
+    setLoading(false);
+  };
 
   return (
     <div className={styles.authContainer}>
-      <img src={logo} alt="Studio Manager Logo" className={styles.logo} />
-      <h1 className={styles.title}>Studio Manager</h1>
-      <p className={styles.subtitle}>Gestisci le tue sessioni in studio</p>
+      <UptoLogo className={styles.logo} />
+      
       <div className={styles.toggleContainer}>
-        <button
-          className={`${styles.toggleButton} ${isLogin ? styles.active : ''}`}
-          onClick={() => { setIsLogin(true); setMessage({ text: '' }) }}
-        >
+        <button className={`${styles.toggleButton} ${isLogin ? styles.active : ''}`} onClick={() => { setIsLogin(true); setMessage({ text: '' }) }}>
           Accedi
         </button>
-        <button
-          className={`${styles.toggleButton} ${!isLogin ? styles.active : ''}`}
-          onClick={() => { setIsLogin(false); setMessage({ text: '' }) }}
-        >
+        <button className={`${styles.toggleButton} ${!isLogin ? styles.active : ''}`} onClick={() => { setIsLogin(false); setMessage({ text: '' }) }}>
           Registrati
         </button>
       </div>
@@ -71,17 +49,17 @@ const AuthPage = () => {
       {isLogin ? (
         <form className={styles.form} onSubmit={handleLogin}>
           <label className={styles.label}>Email</label>
-          <input type="email" placeholder="tua@email.com" className={styles.input} value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input type="email" placeholder="bobby@gmail.com" className={styles.input} value={email} onChange={(e) => setEmail(e.target.value)} required />
           <label className={styles.label}>Password</label>
           <input type="password" placeholder="••••••••" className={styles.input} value={password} onChange={(e) => setPassword(e.target.value)} required />
-          <button type="submit" className={styles.submitButton} disabled={loading}>{loading ? 'Accesso...' : 'Accedi'}</button>
+          <button type="submit" className={styles.submitButton} disabled={loading}>{loading ? 'Aspè' : 'Accedi'}</button>
         </form>
       ) : (
         <form className={styles.form} onSubmit={handleRegister}>
           <label className={styles.label}>Nome</label>
-          <input type="text" placeholder="Il tuo nome" className={styles.input} value={fullName} onChange={(e) => setFullName(e.target.value)} required />
+          <input type="text" placeholder="Il tuo nome d'arte" className={styles.input} value={fullName} onChange={(e) => setFullName(e.target.value)} required />
           <label className={styles.label}>Email</label>
-          <input type="email" placeholder="tua@email.com" className={styles.input} value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input type="email" placeholder="bobby@gmail.com" className={styles.input} value={email} onChange={(e) => setEmail(e.target.value)} required />
           <label className={styles.label}>Password</label>
           <input type="password" placeholder="••••••••" className={styles.input} value={password} onChange={(e) => setPassword(e.target.value)} required minLength="6" />
           <label className={styles.label}>Ruolo</label>
@@ -89,11 +67,11 @@ const AuthPage = () => {
             <option value="artista">Artista</option>
             <option value="produttore">Produttore</option>
           </select>
-          <button type="submit" className={styles.submitButton} disabled={loading}>{loading ? 'Registrazione...' : 'Registrati'}</button>
+          <button type="submit" className={styles.submitButton} disabled={loading}>{loading ? 'Aspè' : 'Registrati'}</button>
         </form>
       )}
     </div>
   )
 }
 
-export default AuthPage
+export default AuthPage;

@@ -11,9 +11,7 @@ const HomePage = ({ session }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Funzione asincrona interna per gestire il caricamento
     const fetchProfile = async () => {
-      // Assicuriamoci che non ci sia nulla in sospeso
       setProfile(null);
       setLoading(true);
 
@@ -26,25 +24,19 @@ const HomePage = ({ session }) => {
       if (error) {
         console.error('Errore nel recupero del profilo:', error);
       } else {
-        // Memorizziamo il profilo nello stato
         setProfile(data);
       }
       
-      // SOLO ALLA FINE di tutto, smettiamo di caricare
       setLoading(false);
     };
 
     fetchProfile();
   }, [session.user.id]);
 
-  // 1. Mostra "Caricamento..." finché loading è true.
-  //    prima barriera di sicurezza.
   if (loading) {
     return <p style={{ textAlign: 'center' }}>Caricamento dati utente...</p>;
   }
 
-  // 2. Se il caricamento è finito MA il profilo è ancora nullo,
-  //    c'è stato un errore --> seconda barriera.
   if (!profile) {
     return (
       <div style={{ textAlign: 'center' }}>
@@ -55,8 +47,6 @@ const HomePage = ({ session }) => {
     );
   }
 
-  // 3. SOLO SE il caricamento è finito E il profilo esiste,
-  //    procediamo a mostrare la dashboard corretta.
   const renderDashboard = () => {
     switch (profile.role) {
       case 'artista':

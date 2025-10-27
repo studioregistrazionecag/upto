@@ -13,19 +13,35 @@
 }
 
 .logo {
-  width: 64px;
-  height: 64px;
-  margin-bottom: 16px;
+  width: 150px; 
+  height: auto;
+  margin-bottom: 24px;
 }
 
 .title {
-  font-size: 28px;
+  font-size: 56px; /* Più imponente */
   font-weight: 700;
-  color: var(--primary-red-gradient); /* MODIFICATO */
-  background: var(--primary-red-gradient); /* MODIFICATO */
+  text-transform: uppercase; /* Tutto maiuscolo */
+  letter-spacing: 4px; /* Aumenta lo spazio tra le lettere */
+  margin-bottom: 4px;
+
+  /* La magia dell'animazione */
+  background: linear-gradient(90deg, 
+    var(--primary-red-gradient), 
+    #000000, 
+    var(--primary-red-gradient)
+  );
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 4px;
+  animation: title-animation 4s ease-in-out infinite;
+}
+
+/* Keyframes per l'animazione del titolo */
+@keyframes title-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .subtitle {
@@ -92,8 +108,8 @@
 
 .input:focus, .select:focus {
     outline: none;
-    border-color: var(--gold-accent); /* MODIFICATO */
-    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2); /* MODIFICATO */
+    border-color: var(--gold-accent);
+    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
 }
 
 .select {
