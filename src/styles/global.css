@@ -1,7 +1,8 @@
+/* src/styles/global.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  /* ... (le tue variabili di colore rimangono invariate) ... */
+  /* NUOVA PALETTE ROSSO / ORO */
   --background: #1A0000;
   --surface: #1C1B22;
   --primary-red-gradient: linear-gradient(90deg, #D32F2F 0%, #B71C1C 100%);
@@ -15,17 +16,16 @@
   --error: #f87171;
 }
 
-@keyframes subtle-gradient { /* ... (animazione invariata) ... */ }
+@keyframes subtle-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-/* NUOVO: Assicurati che html e body occupino tutta l'altezza */
-html, body {
-  height: 100%;
 }
 
 body {
@@ -36,16 +36,14 @@ body {
   background: linear-gradient(-45deg, #B71C1C, #6A0000, #1A0000, #000000);
   background-size: 400% 400%;
   animation: subtle-gradient 15s ease infinite;
-  /* Aggiungi questo per evitare scroll orizzontale se qualcosa sfora */
-  overflow-x: hidden;
 }
 
 #root {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* MODIFICATO: Usa min-height 100% invece di 100vh per ereditare dal body */
-  min-height: 100%;
+  justify-content: center;
+  min-height: 100vh;
   width: 100%;
   padding: 24px;
 }
