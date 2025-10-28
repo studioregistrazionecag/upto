@@ -43,7 +43,7 @@ const ProducerDashboard = () => {
       </div>
       <div className={styles.fullCalendarSection}>
         <h2 className={styles.title}>Calendario Completo</h2>
-        {allEvents.map((event, index) => ( // <-- MODIFICA CORRETTA
+        {allEvents.map((event, index) => (
           <div key={event.id} className={styles.eventCard} style={{ animationDelay: `${index * 100}ms` }}>
             <h3>{new Date(event.event_date).toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' })}</h3>
             <div className={styles.slotsContainer}>

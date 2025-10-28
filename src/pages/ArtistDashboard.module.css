@@ -100,6 +100,25 @@
   color: var(--text-secondary);
 }
 
+.cancelButton {
+  background: transparent;
+  border: 2px solid var(--error);
+  color: var(--error);
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancelButton:hover {
+  background: var(--error);
+  color: white;
+  transform: translateY(-2px);
+}
+
+
 @keyframes fadeInUp {
   from {
     opacity: 0;

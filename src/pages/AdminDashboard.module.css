@@ -95,7 +95,6 @@
 .exportSection h2 { margin-top: 0; }
 .exportSection p { color: var(--text-secondary); margin-bottom: 24px; }
 
-/* NUOVO STILE BOTTONE EXPORT */
 .exportButton {
     width: 100%;
     padding: 14px;
@@ -123,4 +122,27 @@
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.cancelButton {
+  background: transparent;
+  border: 1px solid var(--error);
+  color: var(--error);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancelButton:hover {
+  background: var(--error);
+  color: white;
+}
+
+.bookingInfoWithCancel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
