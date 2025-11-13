@@ -146,3 +146,17 @@
   align-items: center;
   gap: 16px;
 }
+.privateSlot {
+    border-color: #ef4444; /* Rosso */
+    background-color: rgba(239, 68, 68, 0.05); /* Leggero sfondo rosso opzionale */
+}
+
+.privateLabel {
+    color: #ef4444;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+    display: block;
+}

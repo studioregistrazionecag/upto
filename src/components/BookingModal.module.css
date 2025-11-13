@@ -1,91 +1,199 @@
 /* src/components/BookingModal.module.css */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
 
-@keyframes scaleUp {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
+/* --- ANIMAZIONI --- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
+/* --- LAYOUT --- */
 .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease-out forwards;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-out forwards;
 }
 
 .modal {
-  background-color: var(--surface);
-  padding: 24px;
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
-  width: 90%;
-  max-width: 400px;
-  animation: scaleUp 0.3s ease-out forwards;
+    background-color: #121212; /* Nero profondo */
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid #27272a;
+    width: 90%;
+    max-width: 400px; /* Larghezza fissa per controllo layout */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* --- TYPOGRAPHY --- */
 .title {
-  margin-top: 0;
-  margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 8px 0;
 }
 
 .slotInfo {
     margin-bottom: 24px;
-    color: var(--text-secondary);
+    color: #a1a1aa;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
+/* --- FORM --- */
 .modal label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .select {
-  width: 100%;
-  padding: 12px 16px;
-  background-color: var(--input-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  color: var(--text-primary);
-  font-size: 16px;
-  margin-bottom: 24px;
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #18181b;
+    border: 1px solid #3f3f46;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 24px;
+    outline: none;
+    appearance: none; /* Rimuove stile default browser */
+    cursor: pointer;
+    transition: border-color 0.2s;
 }
 
+.select:focus {
+    border-color: var(--gold-accent, #eab308);
+}
+
+/* --- SMART PRIVACY ROW (DESIGN NUOVO) --- */
+.privacyContainer {
+    margin-bottom: 32px;
+}
+
+.privacyRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Spinge testo a SX e switch a DX */
+    flex-wrap: nowrap; /* IMPEDISCE L'A CAPO */
+
+    background-color: #18181b;
+    border: 1px solid #3f3f46;
+    padding: 14px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+/* Effetto Hover */
+.privacyRow:hover {
+    background-color: #27272a;
+    border-color: #52525b;
+}
+
+/* Stato ATTIVO (Rosso come richiesto) */
+.privacyRow.active {
+    background-color: rgba(239, 68, 68, 0.1); /* Rosso scuro trasparente */
+    border-color: #ef4444; /* Bordo Rosso */
+}
+
+.privacyContent {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow: hidden; /* Sicurezza extra */
+}
+
+.icon {
+    font-size: 18px;
+}
+
+.privacyText {
+    color: #d4d4d8;
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap; /* IMPEDISCE L'A CAPO DEL TESTO */
+}
+
+.privacyRow.active .privacyText {
+    color: #ffffff;
+}
+
+/* --- SWITCH PERSONALIZZATO --- */
+.toggleTrack {
+    width: 44px;
+    height: 24px;
+    background-color: #3f3f46;
+    border-radius: 20px;
+    position: relative;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0; /* IMPEDISCE ALLO SWITCH DI RIMPICCIOLIRSI */
+    margin-left: 16px; /* Distanza minima dal testo */
+}
+
+.toggleThumb {
+    width: 18px;
+    height: 18px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Stato Switch Attivo */
+.privacyRow.active .toggleTrack {
+    background-color: #ef4444; /* Rosso vivo */
+}
+
+.privacyRow.active .toggleThumb {
+    transform: translateX(20px);
+}
+
+/* --- PULSANTI --- */
 .buttonGroup {
-  display: flex;
-  gap: 12px;
-  justify-content: flex-end;
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
 }
 
 .cancelButton, .confirmButton {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 500;
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
     cursor: pointer;
+    border: none;
 }
 
 .cancelButton {
-    background-color: var(--input-bg);
-    color: var(--text-primary);
-    border: 1px solid var(--border-color);
+    background: transparent;
+    border: 1px solid #3f3f46;
+    color: #a1a1aa;
 }
-
-.confirmButton {
-    background: var(--primary-gradient);
+.cancelButton:hover {
+    background-color: #27272a;
     color: white;
 }
 
+.confirmButton {
+    background-color: white; /* Bianco per massimo contrasto */
+    color: black;
+}
+.confirmButton:hover {
+    background-color: #e4e4e7;
+}
 .confirmButton:disabled {
     opacity: 0.5;
     cursor: not-allowed;
